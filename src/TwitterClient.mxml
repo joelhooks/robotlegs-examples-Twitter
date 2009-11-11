@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/halo"
+					   width="450"
+					   minHeight="600"
+					   maxHeight="600"
+					   minWidth="450"
+					   maxWidth="450"
+					   height="600"
+					   showStatusBar="false"
+					   xmlns:twitter="org.robotlegs.examples.twitter.*"
+					   xmlns:components="org.robotlegs.examples.twitter.view.components.*">
+	<fx:Declarations>
+		<twitter:TwitterContext contextView="{this}"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.examples.twitter.events.UserEvent;
+			public static const APPLICATION_STATE_LOGIN:String="login";
+			public static const APPLICATION_STATE_VIEW_MESSAGES:String="viewMessages";
+
+			protected function loginView_loginUserHandler(event:UserEvent):void
+			{
+				dispatchEvent(event);
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="login"/>
+		<s:State name="viewMessages"/>
+	</s:states>
+
+	<components:LoginView id="loginView"
+						  includeInLayout.login="true"
+						  includeInLayout.viewMessages="false"
+						  visible.login="true"
+						  visible.viewMessages="false"
+						  loginUser="loginView_loginUserHandler(event)"/>
+
+	<components:MessageView width="100%"
+							height="100%"
+							enabled.login="false"/>
+
+</s:WindowedApplication>

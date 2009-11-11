@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/halo"
+				width="100%"
+				height="75">
+	<s:layout>
+		<s:HorizontalLayout paddingBottom="5"
+							paddingLeft="5"
+							paddingRight="5"
+							paddingTop="5"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.examples.twitter.model.vo.Message;
+			
+			[Bindable]
+			private var message:Message;
+			
+			override public function set data(value:Object) : void
+			{
+				super.data = value;
+				message = value as Message;
+			}
+		]]>
+	</fx:Script>
+	<mx:Image source="{message.user.avatarURL}"
+			  width="50"
+			  height="50"/>
+	<s:VGroup width="100%">
+		<s:Label id="userLabel"
+				 text="{message.user.displayName}"/>
+		<s:RichText id="messageText"
+					text="{message.text}"
+					width="100%"
+					height="100%"/>
+	</s:VGroup>
+</s:ItemRenderer>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/halo"
+		  click="button1_clickHandler(event)"
+		  label="refresh">
+	<fx:Metadata>
+		[Event(name="refreshMessages", type="org.robotlegs.examples.twitter.events.MessageListEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import flash.events.MouseEvent;
+			
+			import org.robotlegs.examples.twitter.events.MessageListEvent;
+
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent( new MessageListEvent(MessageListEvent.REFRESH_MESSAGES));
+				enabled=false;
+			}
+		]]>
+	</fx:Script>
+</s:Button>
